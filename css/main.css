@@ -1,0 +1,321 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.33;
+  color: #E6E5EA;
+}
+
+p {
+  margin: 0;
+}
+
+h1 {
+  margin: 0;
+}
+
+.app {
+  min-height: 100vh;
+  padding: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #08070B;
+}
+@media screen and (max-width: 768px) {
+  .app {
+    padding: 60px 16px;
+  }
+}
+
+.generator {
+  width: 100%;
+  max-width: 540px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+.generator__title {
+  font-size: 24px;
+  color: #817D92;
+  text-align: center;
+}
+.generator__wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+.generator__label {
+  position: relative;
+  width: 100%;
+}
+.generator__copy {
+  position: absolute;
+  top: 50%;
+  right: 32px;
+  width: 21px;
+  height: 24px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  transition: transform 0.4s ease;
+}
+.generator__copy:hover {
+  transform: translateY(-50%) scale(1.1);
+}
+.generator__input {
+  width: 100%;
+  padding: 19px 64px 19px 32px;
+  background-color: #24232C;
+  border: none;
+  outline: none;
+  color: #E6E5EA;
+  font-size: 32px;
+  line-height: 1.31;
+  font-weight: 700;
+}
+.generator__main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 24px 32px;
+  background-color: #24232C;
+}
+.generator__top {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.generator__length {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.generator__length p {
+  font-size: 18px;
+}
+.generator__length span {
+  font-size: 32px;
+  line-height: 1.31;
+  color: #A4FFAF;
+}
+.generator__range {
+  width: 100%;
+  /* Firefox */
+}
+.generator__range input[type=range] {
+  width: 100%;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+  --p: 0%;
+}
+.generator__range input[type=range]::-webkit-slider-runnable-track {
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #a4ffaf 0%, #a4ffaf var(--p), #18171f var(--p), #18171f 100%);
+}
+.generator__range input[type=range]::-webkit-slider-thumb {
+  appearance: none;
+  width: 28px;
+  height: 28px;
+  background: #e6e5ea;
+  border-radius: 50%;
+  margin-top: -10px;
+  border: 2px solid transparent;
+}
+.generator__range input[type=range]:active::-webkit-slider-thumb {
+  background: #18171F;
+  border-color: #a4ffaf;
+}
+.generator__range input[type=range]::-moz-range-track {
+  height: 8px;
+  background: #18171f;
+  border-radius: 999px;
+}
+.generator__range input[type=range]::-moz-range-progress {
+  height: 8px;
+  background: #a4ffaf;
+  border-radius: 999px;
+}
+.generator__range input[type=range]::-moz-range-thumb {
+  width: 28px;
+  height: 28px;
+  background: #e6e5ea;
+  border-radius: 50%;
+  border: 2px solid transparent;
+}
+.generator__range input[type=range]:active::-moz-range-thumb {
+  background: #a4ffaf;
+  border-color: #e6e5ea;
+}
+.generator__settings {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.generator__checkbox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  cursor: pointer;
+}
+.generator__checkbox input[type=checkbox] {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  transition: background-color 0.4s ease;
+}
+.generator__checkbox .text {
+  font-size: 18px;
+}
+.generator__checkbox .checkbox {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border: 2px solid #E6E5EA;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.generator__checkbox .checkbox::after {
+  content: "";
+  width: 14px;
+  height: 12px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  background-image: url("../assets/images/icon-check.svg");
+}
+.generator__checkbox input[type=checkbox]:checked + .checkbox {
+  background-color: #A4FFAF;
+  border-color: #a4ffaf;
+}
+.generator__checkbox input[type=checkbox]:checked + .checkbox::after {
+  opacity: 1;
+}
+.generator__strength {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 24px 32px;
+  background-color: #18171F;
+}
+.generator__strength p {
+  font-size: 18px;
+  color: #817D92;
+}
+.generator__strength-value {
+  margin-left: auto;
+  margin-right: 16px;
+  text-transform: uppercase;
+}
+.generator__bar {
+  display: flex;
+  gap: 8px;
+}
+.generator__bar span {
+  width: 10px;
+  height: 28px;
+  border: 2px solid #e6e5ea;
+  background: transparent;
+}
+.generator__strength[data-level=too-weak] .generator__bar span.is-active {
+  background: #f64a4a;
+  border-color: #f64a4a;
+}
+.generator__strength[data-level=weak] .generator__bar span.is-active {
+  background: #fb7c58;
+  border-color: #fb7c58;
+}
+.generator__strength[data-level=medium] .generator__bar span.is-active {
+  background: #f8cd65;
+  border-color: #f8cd65;
+}
+.generator__strength[data-level=strong] .generator__bar span.is-active {
+  background: #a4ffaf;
+  border-color: #a4ffaf;
+}
+.generator__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  gap: 24px;
+  color: #24232C;
+  background-color: #A4FFAF;
+  border: 2px solid #A4FFAF;
+  outline: none;
+  cursor: pointer;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+.generator__btn span {
+  text-transform: uppercase;
+  font-weight: 700;
+  line-height: 1.33;
+}
+.generator__btn svg path {
+  transition: fill 0.4s ease;
+}
+.generator__btn:hover {
+  color: #A4FFAF;
+  background-color: transparent;
+}
+.generator__btn:hover path {
+  fill: #A4FFAF;
+}
+@media screen and (max-width: 768px) {
+  .generator {
+    max-width: 100%;
+    gap: 16px;
+  }
+  .generator__title {
+    font-size: 16px;
+  }
+  .generator__wrap {
+    gap: 16px;
+  }
+  .generator__copy {
+    right: 16px;
+  }
+  .generator__input {
+    padding: 16px 32px 16px 16px;
+    font-size: 24px;
+  }
+  .generator__main {
+    padding: 16px;
+  }
+  .generator__top {
+    gap: 8px;
+  }
+  .generator__length p {
+    font-size: 16px;
+  }
+  .generator__length span {
+    margin-right: 14px;
+    font-size: 24px;
+  }
+  .generator__checkbox {
+    gap: 16px;
+  }
+  .generator__checkbox .text {
+    font-size: 16px;
+  }
+  .generator__strength {
+    padding: 14px 16px;
+  }
+  .generator__strength p {
+    font-size: 16px;
+  }
+  .generator__btn {
+    padding: 18px;
+    gap: 16px;
+    font-size: 16px;
+  }
+}
+
+/*# sourceMappingURL=main.css.map */
